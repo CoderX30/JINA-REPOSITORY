@@ -1,3 +1,5 @@
+// 🧠 Triggering flowchart generation for getResponse agent pipeline
+
 import { ZodObject } from 'zod';
 import { CoreMessage } from 'ai';
 import { SEARCH_PROVIDER, STEP_SLEEP } from "./config";
