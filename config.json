@@ -1,0 +1,100 @@
+{
+  "env": {
+    "https_proxy": "",
+    "OPENAI_BASE_URL": "",
+    "GEMINI_API_KEY": "AIzaSyBtNjZFVmSnE0yFCYZ_F8vQMnYoKNEaBdk",
+    "OPENAI_API_KEY": "",
+    "JINA_API_KEY": "jina_f8c27b90f3d9422e99810dbc6049d2a0rKNParL6ayNee6KB4Q9rdy2FY6V6",
+    "BRAVE_API_KEY": "",
+    "SERPER_API_KEY": "",
+    "DEFAULT_MODEL_NAME": ""
+  },
+  "defaults": {
+    "search_provider": "jina",
+    "llm_provider": "gemini",
+    "step_sleep": 1
+  },
+  "providers": {
+    "gemini": {
+      "createClient": "createGoogleGenerativeAI"
+    },
+    "openai": {
+      "createClient": "createOpenAI",
+      "clientConfig": {
+        "compatibility": "strict"
+      }
+    }
+  },
+  "models": {
+    "gemini": {
+      "default": {
+        "model": "gemini-2.5-flash",
+        "temperature": 0,
+        "maxTokens": 2000
+      },
+      "tools": {
+        "coder": {
+          "temperature": 0.7
+        },
+        "evaluator": {
+          "temperature": 0.6,
+          "maxTokens": 200
+        },
+        "errorAnalyzer": {},
+        "queryRewriter": {
+          "temperature": 0.1
+        },
+        "researchPlanner": {},
+        "serpCluster": {},
+        "agent": {
+          "temperature": 0.7
+        },
+        "agentBeastMode": {
+          "temperature": 0.7
+        },
+        "finalizer": {
+          "model": "gemini-2.5-flash-preview-05-20"
+        },
+        "reducer": {
+          "maxTokens": 16000
+        },
+        "fallback": {
+          "maxTokens": 8000,
+          "model": "gemini-2.0-flash-lite"
+        }
+      }
+    },
+    "openai": {
+      "default": {
+        "model": "gpt-4o-mini",
+        "temperature": 0,
+        "maxTokens": 8000
+      },
+      "tools": {
+        "coder": {
+          "temperature": 0.7
+        },
+        "researchPlanner": {},
+        "evaluator": {},
+        "errorAnalyzer": {},
+        "queryRewriter": {
+          "temperature": 0.1
+        },
+        "serpCluster": {},
+        "agent": {
+          "temperature": 0.7
+        },
+        "agentBeastMode": {
+          "temperature": 0.7
+        },
+        "fallback": {
+          "temperature": 0
+        },
+        "finalizer": {},
+        "reducer": {
+          "maxTokens": 16000
+        }
+      }
+    }
+  }
+}

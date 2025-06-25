@@ -1,0 +1,102 @@
+{
+  "env": {
+    "https_proxy": "",
+    "OPENAI_BASE_URL": "",
+    "GEMINI_API_KEY": "",
+    "OPENAI_API_KEY": "",
+    "JINA_API_KEY": "",
+    "BRAVE_API_KEY": "",
+    "SERPER_API_KEY": "",
+    "DEFAULT_MODEL_NAME": ""
+  },
+  "defaults": {
+    "search_provider": "jina",
+    "llm_provider": "vertex",
+    "step_sleep": 0.5
+  },
+  "providers": {
+    "vertex": {
+      "createClient": "createGoogleVertex",
+      "clientConfig": {
+        "location": "us-central1"
+      }
+    },
+    "gemini": {
+      "createClient": "createGoogleGenerativeAI"
+    },
+    "openai": {
+      "createClient": "createOpenAI",
+      "clientConfig": {
+        "compatibility": "strict"
+      }
+    }
+  },
+  "models": {
+    "gemini": {
+      "default": {
+        "model": "gemini-2.0-flash",
+        "temperature": 0.6,
+        "maxTokens": 8000
+      },
+      "tools": {
+        "coder": {
+          "maxTokens": 2000,
+          "model": "gemini-2.0-flash-lite"
+        },
+        "researchPlanner": {},
+        "evaluator": {
+          "maxTokens": 2000
+        },
+        "serpCluster": {},
+        "errorAnalyzer": {
+          "maxTokens": 1000
+        },
+        "queryRewriter": {
+          "maxTokens": 2000
+        },
+        "agent": {},
+        "agentBeastMode": {},
+        "fallback": {
+          "maxTokens": 8000,
+          "model": "gemini-2.0-flash-lite"
+        },
+        "finalizer": {},
+        "reducer": {
+          "maxTokens": 16000
+        }
+      }
+    },
+    "openai": {
+      "default": {
+        "model": "gpt-4o-mini",
+        "temperature": 0,
+        "maxTokens": 8000
+      },
+      "tools": {
+        "coder": {
+          "temperature": 0.7
+        },
+        "evaluator": {},
+        "errorAnalyzer": {},
+        "researchPlanner": {},
+        "queryRewriter": {
+          "temperature": 0.1
+        },
+        "serpCluster": {},
+        "agent": {
+          "temperature": 0.7
+        },
+        "agentBeastMode": {
+          "temperature": 0.7
+        },
+        "fallback": {
+          "temperature": 0
+        },
+        "finalizer": {},
+        "reducer": {
+          "maxTokens": 16000
+        }
+      }
+    }
+  }
+}
